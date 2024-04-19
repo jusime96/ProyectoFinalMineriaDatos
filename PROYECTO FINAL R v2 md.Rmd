@@ -1,0 +1,219 @@
+---
+title: "Proyecto Final"
+author: "Julián Sierra"
+date: "2024-04-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+install.packages("readxl")
+library(readxl)
+
+install.packages("arules")
+library(arules)
+
+install.packages("writexl")
+library(writexl)
+
+AÑO2016 <- read_excel("D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\3. Encuesta de empleo e ingresos-20240406T162514Z-001\\3. Encuesta de empleo e ingresos\\2016.xlsx")
+AÑO2017 <- read_excel("D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\3. Encuesta de empleo e ingresos-20240406T162514Z-001\\3. Encuesta de empleo e ingresos\\2017.xlsx")
+AÑO2018 <- read_excel("D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\3. Encuesta de empleo e ingresos-20240406T162514Z-001\\3. Encuesta de empleo e ingresos\\2018.xlsx")
+AÑO2019 <- read_excel("D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\3. Encuesta de empleo e ingresos-20240406T162514Z-001\\3. Encuesta de empleo e ingresos\\2019.xlsx")
+AÑO2021 <- read_excel("D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\3. Encuesta de empleo e ingresos-20240406T162514Z-001\\3. Encuesta de empleo e ingresos\\2021.xlsx")
+AÑO2022 <- read_excel("D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\3. Encuesta de empleo e ingresos-20240406T162514Z-001\\3. Encuesta de empleo e ingresos\\2022.xlsx")
+
+#--------------------------------------REGLAS2016
+subset2016<-subset(AÑO2016, PPA02 == 1)
+subset2016<-subset2016[, c(8,16,19,26,30,50,54,64,65,66,67,69,70,76,80,82,84,86,104,106,108,114,120,127,128,138,139,140,141,142,143,259)]
+regla2016 <- apriori(subset2016, parameter = list(support=0.2, confidence =0.5))
+Regla2016<-inspect(regla2016[0:200])
+write_xlsx(data.frame(Regla2016 = Regla2016), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2016Hombres.xlsx")
+
+subset2016<-subset(AÑO2016, PPA02 == 2)
+subset2016<-subset2016[, c(7,8,16,19,26,30,50,54,64,65,66,67,69,70,76,80,82,84,86,104,106,108,114,120,127,128,138,139,140,141,142,143,259)]
+regla2016 <- apriori(subset2016, parameter = list(support=0.2, confidence =0.5))
+Regla2016<-inspect(regla2016[0:200])
+write_xlsx(data.frame(Regla2016 = Regla2016), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2016Mujeres.xlsx")
+#--------------------------------------REGLAS2017
+subset2017<-subset(AÑO2017, PPA02 == 1)
+subset2017<-subset2017[, c(8,16,19,26,30,55,59,69,70,71,72,74,75,81,85,87,89,91,109,111,113,119,125,132,133,143,144,145,146,147,148,318)]
+regla2017 <- apriori(subset2017, parameter = list(support=0.2, confidence =0.5))
+Regla2017<-inspect(regla2017[0:200])
+write_xlsx(data.frame(Regla2017 = Regla2017), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2017Hombres.xlsx")
+
+subset2017<-subset(AÑO2017, PPA02 == 2)
+subset2017<-subset2017[, c(7,8,16,19,26,30,55,59,69,70,71,72,74,75,81,85,87,89,91,109,111,113,119,125,132,133,143,144,145,146,147,148,318)]
+regla2017 <- apriori(subset2017, parameter = list(support=0.2, confidence =0.5))
+Regla2017<-inspect(regla2017[0:200])
+write_xlsx(data.frame(Regla2017 = Regla2017), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2017Mujeres.xlsx")
+#--------------------------------------REGLAS2018
+subset2018<-subset(AÑO2018, PPA02 == 1)
+subset2018<-subset2018[, c(7,8,16,19,26,30,55,59,69,70,71,72,74,75,81,85,87,89,91,109,111,113,119,125,132,133,143,144,145,146,147,148,325)]
+regla2018 <- apriori(subset2018, parameter = list(support=0.2, confidence =0.5))
+Regla2018<-inspect(regla2018[0:200])
+write_xlsx(data.frame(Regla2018 = Regla2018), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2018Hombres.xlsx")
+
+subset2018<-subset(AÑO2018, PPA02 == 2)
+subset2018<-subset2018[, c(7,8,16,19,26,30,55,59,69,70,71,72,74,75,81,85,87,89,91,109,111,113,119,125,132,133,143,144,145,146,147,148,325)]
+regla2018 <- apriori(subset2018, parameter = list(support=0.2, confidence =0.5))
+Regla2018<-inspect(regla2018[0:200])
+write_xlsx(data.frame(Regla2018 = Regla2018), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2018Mujeres.xlsx")
+
+#--------------------------------------REGLAS2019
+subset2019<-subset(AÑO2019, PPA02 == 1)
+subset2019<-subset2019[, c(7,8,16,26,30,54,58,68,69,70,71,73,74,80,84,86,88,90,108,110,112,118,124,131,132,142,143,144,145,146,147,323)]
+regla2019 <- apriori(subset2019, parameter = list(support=0.2, confidence =0.5))
+Regla2019<-inspect(regla2019[0:200])
+write_xlsx(data.frame(Regla2019 = Regla2019), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2019Hombres.xlsx")
+
+
+subset2019<-subset(AÑO2019, PPA02 == 2)
+subset2019<-subset2019[, c(7,8,16,26,30,54,58,68,69,70,71,73,74,80,84,86,88,90,108,110,112,118,124,131,132,142,143,144,145,146,147,323)]
+regla2019 <- apriori(subset2019, parameter = list(support=0.2, confidence =0.5))
+Regla2019<-inspect(regla2019[0:200])
+write_xlsx(data.frame(Regla2019 = Regla2019), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2019Mujeres.xlsx")
+
+
+#--------------------------------------REGLAS2021
+subset2021<-subset(AÑO2021, PPA02 == 1)
+subset2021<-subset2021[, c(9,14,17,24,28,53,57,67,68,69,70,72,73,79,83,85,87,89,107,109,111,117,123,130,131,142,143,144,145,146)]
+regla2021 <- apriori(subset2021, parameter = list(support=0.2, confidence =0.5))
+Regla2021<-inspect(regla2021[0:200])
+write_xlsx(data.frame(Regla2021 = Regla2021), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2021Hombres.xlsx")
+
+subset2021<-subset(AÑO2021, PPA02 == 2)
+subset2021<-subset2021[, c(,9,14,17,24,28,53,57,67,68,69,70,72,73,79,83,85,87,89,107,109,111,117,123,130,131,142,143,144,145,146)]
+regla2021 <- apriori(subset2021, parameter = list(support=0.2, confidence =0.5))
+Regla2021<-inspect(regla2021[0:200])
+write_xlsx(data.frame(Regla2021 = Regla2021), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2021Mujeres.xlsx")
+
+
+
+
+#--------------------------------------REGLAS2022
+subset2022<-subset(AÑO2022, P03A02 == 1)
+subset2022<-subset2022[, c(8,12,26,64,65,87,88,89,90,100,142,144,176,177,178,179,180)]
+regla2022 <- apriori(subset2022, parameter = list(support=0.2, confidence =0.5))
+Regla2022<-inspect(regla2022)
+write_xlsx(data.frame(Regla2022 = Regla2022), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2022Hombres.xlsx")
+
+subset2022<-subset(AÑO2022, P03A02 == 2)
+subset2022<-subset2022[, c(8,12,26,64,65,87,88,89,90,100,142,144,176,177,178,179,180)]
+regla2022 <- apriori(subset2022, parameter = list(support=0.2, confidence =0.5))
+Regla2022<-inspect(regla2022)
+write_xlsx(data.frame(Regla2022 = Regla2022), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Reglas2022Mujeres.xlsx")
+
+
+AÑO2022[, c(7,8,12,26,64,65,87,88,89,90,100,142,144,176,177,178,179,180)]
+
+write_xlsx(data.frame(subset2016 =subset2016), "D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\DataSet2016.xlsx")
+
+
+
+#--------------------------------------CLUSTERS
+
+
+
+```
+
+
+```{r}
+install.packages("ggplot2")
+library("ggplot2")
+
+
+install.packages("readxl")
+library(readxl)
+
+DataCluster <- read_excel("D:\\Maestria\\Cuarto Trimestre\\Mineria de Datos\\Dataset\\DataSetFinal.xlsx")
+
+clusterk <- kmeans(DataCluster, centers=3)
+
+
+ggplot(DataCluster, aes(x =Sabado , y =Estudios_Aprobados  , color = as.factor(clusterk$cluster))) +
+  geom_point() + 
+  geom_point(data = as.data.frame(clusterk$centers), aes(x = Sabado, y = Estudios_Aprobados), color = "black", size = 4, shape = 17) +
+  labs(title = "Horas laboradas Sabado vs Estudios Aprobados") +
+  theme_minimal()
+
+
+ggplot(DataCluster, aes(x =Estudios_Aprobados , y =Sueldo_Salario  , color = as.factor(clusterk$cluster))) +
+  geom_point() + 
+  geom_point(data = as.data.frame(clusterk$centers), aes(x = Estudios_Aprobados, y = Sueldo_Salario), color = "black", size = 4, shape = 17) +
+  labs(title = "Sueldo_Salario vs Estudios Aprobados") +
+  theme_minimal()
+
+
+subsetDC<-subset(DataCluster, Jornada != 98)
+clusterksdc <- kmeans(subsetDC, centers=3)
+ggplot(subsetDC, aes(x =Jornada , y =Sueldo_Salario  , color = as.factor(clusterksdc$cluster))) + geom_point() + 
+  geom_point(data = as.data.frame(clusterksdc$centers), aes(x = Jornada, y = Sueldo_Salario), color = "black", size = 4, shape = 17) +
+  labs(title = "Sueldo_Salario vs Jornada") +
+  theme_minimal()
+
+ggplot(DataCluster, aes(x =GENERO , y =Trabajo_Vacaciones  , color = as.factor(clusterk$cluster))) +
+  geom_point() + 
+  geom_point(data = as.data.frame(clusterk$centers), aes(x = GENERO, y = Trabajo_Vacaciones), color = "black", size = 4, shape = 17) +
+  labs(title = "Genero vs Trabajo_Vacaciones") +
+  theme_minimal()
+
+ggplot(DataCluster, aes(x =Act_Sem_Pas , y =Sueldo_Salario, color = as.factor(clusterk$cluster))) +
+  geom_point() + 
+  geom_point(data = as.data.frame(clusterk$centers), aes(x = Act_Sem_Pas, y = Sueldo_Salario), color = "black", size = 4, shape = 17) +
+  labs(title = "Act_Sem_Pas vs Sueldo_Salario") +
+  theme_minimal()
+
+subsetDC<-subset(DataCluster, Act_Sem_Pas != 98)
+clusterksdc <- kmeans(subsetDC, centers=3)
+ggplot(subsetDC, aes(x =Act_Sem_Pas , y =Sueldo_Salario  , color = as.factor(clusterksdc$cluster))) + geom_point() + 
+  geom_point(data = as.data.frame(clusterksdc$centers), aes(x = Act_Sem_Pas, y = Sueldo_Salario), color = "black", size = 4, shape = 17) +
+  labs(title = "Actividad Semana Pasada vs Sueldo_Salario") +
+  theme_minimal()
+```
+
+
+```{r}
+install.packages("rpart")
+install.packages("rpart.plot")
+
+library(rpart)
+library(rpart.plot)
+
+
+subs <- subset(DataCluster,Sueldo_Salario<5000 )
+
+arbol <- rpart(Ausencia ~ EDAD, data=DataCluster, method = "class")
+
+rpart.plot(arbol,
+           type = 2,
+           extra = 0,  
+           under = TRUE,  
+           fallen.leaves = TRUE,  
+           box.palette = "BuGn",  
+           main = "Ausencia según edad",
+           cex = 0.45)  
+
+
+
+subs <- subset(DataCluster,Sueldo_Salario<10000 )
+
+arbol2 <- rpart(EDAD ~ Estudios_Aprobados, data=subs, method = "class")
+
+rpart.plot(arbol2,
+           type = 2,
+           extra = 0,  
+           under = TRUE,  
+           fallen.leaves = TRUE,  
+           box.palette = "BuGn",  
+           main = "Edad",
+           cex = 0.45) 
+
+
+
+
+```
